@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { Shoe } from './shoes/Shoe';
+import ShoesPage from './shoes/ShoesPage';
+import { ShopContext } from './shoes/ShopContext';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [basket, setBasket] = useState(new Array<{shoe: Shoe, size: number}>())
+    
+    return (
+        <ShopContext.Provider value={{basket, setBasket}}>
+            <div className="container">
+                <ShoesPage />
+            </div>
+        </ShopContext.Provider>
+    );
 }
 
 export default App;
